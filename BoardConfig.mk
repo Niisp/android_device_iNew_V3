@@ -48,14 +48,13 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 6291456
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 6291456
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 734003200
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824
-BOARD_FLASH_BLOCK_SIZE := 4096
+BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 #BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
-TARGET_RECOVERY_INITRC := $(DEVICE_FOLDER)/recovery/init.rc
+TARGET_RECOVERY_INITRC := $(DEVICE_FOLDER)/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := $(DEVICE_FOLDER)/recovery/recovery.fstab
-TARGET_PREBUILT_RECOVERY_KERNEL := $(DEVICE_FOLDER)/recovery/kernel
 
 BOARD_HAS_MTK := true
 #MTK Partitions Defines
@@ -65,6 +64,8 @@ MTK_RECOVERY_DEVICE_NAME := /dev/recovery
 MTK_RECOVERY_DEVICE_SIZE := 6291456
 MTK_UBOOT_DEVICE_NAME := /dev/uboot
 MTK_UBOOT_DEVICE_SIZE := 393216
+MTK_NVRAM_DEVICE_NAME := /dev/nvram
+MTK_NVRAM_DEVICE_SIZE := 5242880
 
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 DEVICE_RESOLUTION := 720x1280
@@ -75,6 +76,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadg
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
 
 #BOARD_RECOVERY_SWIPE := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_FOLDER)/bluetooth
 
 # EGL settings
 BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
@@ -87,4 +90,5 @@ persist.mtk.aee.aed=on \
 ro.debuggable=1 \
 persist.service.acm.enable=0 \
 persist.sys.usb.config=mass_storage \
+ro.bootloader.mode=download \
 ro.mount.fs=EXT4
